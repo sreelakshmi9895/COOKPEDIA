@@ -4,7 +4,7 @@
     <div class="col-lg-4">
   <h4>Filter</h4>
   <!-- all btn -->
-   <button class="btn mt-5">
+   <button (click)="getAllRecipes()" class="btn mt-5">
   All
    </button>
    <!-- cuisine dropdown -->
@@ -14,9 +14,11 @@
   </button>
   <div class="collapse" id="collapseExample">
     <!-- duplicate according to cuisine type -->
- <button class="btn">
-    cuisine
+@for (cuisine of cuisineArray(); track $index) {
+   <button (click)="filterRecipe('cuisine',cuisine)" class="btn">
+    {{cuisine}}
  </button>
+}
 </div>
 </div>
     <!-- meal type dropdown -->
@@ -26,28 +28,40 @@
   </button>
   <div class="collapse" id="collapseExample1">
     <!-- duplicate according to cuisine type -->
- <button class="btn">
-    meal
+ @for (meal of mealTypeArray(); track $index) {
+  <button (click)="filterRecipe('mealType',meal)" class="btn">
+    {{meal}}
  </button>
+ }
 </div>
 </div>
     </div>
     <div class="col-lg-8">
         <div class="d-flex justify-content-between align-items-center">
   <h1>All Recipes</h1>
-  <input type="text" placeholder="Search Recipe Here" class="form-control w-50">
+  <input [(ngModel)]="searchKey" type="text" placeholder="Search Recipe Here" class="form-control w-50">
         </div>
-        <div class="row">
- <div class="col-lg-4">
+       <div class="row">
+        <!-- duplicate acoording to recipe card -->
+@for (recipe of allRecipes() | search:searchKey | paginate: { itemsPerPage: 9, currentPage: p }; track $index) {
+   <div class="col-lg-4">
 <div class="p-3">
-<img class="card-img-top" src="margin-left:150px" src="https://www.pngall.com/wp-content/uploads/2/Healthy-Meal.png" alt="">
+<img class="card-img-top" [src]="recipe.image" alt="">
 <div class="card-body">
-<h5 class="card-title">name</h5>
-<p>Cuisone : cuisine</p>
+<h5 class="card-title">{{recipe.name}}</h5>
+<p>Cuisone : {{recipe.cuisine}}</p>
 </div>
  </div>
         </div>
+}
+@if ((allRecipes() | search:searchKey).length==0){
+  <p class="my-5 fw-bolder">Recipe not found</p>
+}
     </div>
+    <!-- pagination -->
+     <div class="mb-3 text-center">
+       <pagination-controls (pageChange)="p = $event"></pagination-controls>
+     </div>
     </div>
 </div>
 <app-footer></app-footer>
