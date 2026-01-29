@@ -72,7 +72,10 @@ addFeedbackAPI(reqBody:any){
 }
 
 
-
+// http://localhost:3000/user-downloads :get by profile component when page loads
+getUserDownloadListAPI(){
+   return this.http.get(`${this.server_url}/user-downloads`,this.appendToken())
+}
 
 
 }
