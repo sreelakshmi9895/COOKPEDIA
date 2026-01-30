@@ -77,5 +77,16 @@ getUserDownloadListAPI(){
    return this.http.get(`${this.server_url}/user-downloads`,this.appendToken())
 }
 
+// http://localhost:3000/user-edit
+editUserPictureAPI(reqBody:any){
+  return this.http.put(`${this.server_url}/user-edit`,reqBody,this.appendToken())
+}
+
+// feedback -approve :get by home page when it loads
+getApproveFeedbackAPI(){
+   return this.http.get(`${this.server_url}/feedbacks-approve`,)
+}
+
+
 
 }

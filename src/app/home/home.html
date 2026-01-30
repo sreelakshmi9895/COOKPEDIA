@@ -44,7 +44,7 @@
 <p class="text-secondary mt-3">Find the perfect food ideas to start your day with the quick and easiest way.</p>
 </div>
   </div>
-     </div>
+     </div>  
     <!--app download banner  -->
     <div style="height:450px" class="bg-success my-5 text-light row align-items-center rounded p-5">
 <div class="col-lg-6">
@@ -63,10 +63,12 @@ Google Play for a better experience</h5>
     <h1>Client Testimonials</h1>
     <div class="scroll-text d-flex my-5">
         <!-- testimont duplicate -->
-<div class="border rounded  p-3 me-2 w-25 text-wrap">
-      <h5>name</h5>
-<p style="text-align:justify">message</p>
+@for (item of feedbacks(); track $index) {
+    <div class="border rounded  p-3 me-2 w-25 text-wrap">
+      <h5>{{item.name}}</h5>
+<p style="text-align:justify">{{item.message}}</p>
 </div>
+}
     </div>
 </div>
      </div>
