@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { RecipeModel } from '../admin/model/recipeModel';
 
 @Injectable({
   providedIn: 'root',
@@ -87,6 +88,44 @@ getApproveFeedbackAPI(){
    return this.http.get(`${this.server_url}/feedbacks-approve`,)
 }
 
+// http://localhost:3000/user-list:get by admi  when page loads
+getUserListAPI(){
+   return this.http.get(`${this.server_url}/user-list`,this.appendToken())
+}
 
+
+// downloads
+getDownloadListAPI(){
+   return this.http.get(`${this.server_url}/downloads`,this.appendToken())
+}
+
+
+// http://localhost:3000/feedbacks get by admin feedback
+getFeedbackListAPI(){
+   return this.http.get(`${this.server_url}/feedbacks`,this.appendToken())
+}
+
+// http://localhost:3000/feedbacks/697a00d8589152769ee29fa5 :put by feedback when approve/reject btn clicked
+updateFeedbackstatusAPI(id:string,reqBody:any){
+   return this.http.put(`${this.server_url}/feedbacks/${id}`,reqBody,this.appendToken())
+}
+
+
+// http://localhost:3000/recipes :post rqst by manage recipe component when add btn cliked
+addRecipeAPI(reqBody:RecipeModel){
+   return this.http.post(`${this.server_url}/recipes`,reqBody,this.appendToken())
+}
+
+// http://localhost:3000/recipes/6982270df83fcd0d168f52ed	: DELETE BY RECIPES WHE DELETE BTN CLICKED 
+removeRecipeAPI(id:string){
+   return this.http.delete(`${this.server_url}/recipes/${id}`,this.appendToken())
+}
+
+
+// http://localhost:3000/recipes/6982270df83fcd0d168f52ed :put rqst by manage recipe coponent when update button clicked
+editRecipeAPI(id:string,reqBody:RecipeModel){
+   return this.http.put(`${this.server_url}/recipes/${id}`,reqBody,this.appendToken())
+}
 
 }
+

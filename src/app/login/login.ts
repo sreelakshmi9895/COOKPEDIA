@@ -36,18 +36,20 @@ export class Login {
         next:(res:any)=>{
           sessionStorage.setItem("token",res.token)
            sessionStorage.setItem("user",JSON.stringify(res.user))
-          this.toaster.success("User login successful...")
+          alert("User login successful...")
           this.loginForm.reset()
-        setTimeout(()=>{
-           this.router.navigateByUrl('/')
-        },2000)
+          if(res.userrole=="user"){
+            this.router.navigateByUrl('/')
+          }else{
+             this.router.navigateByUrl('/admin')
+          }
         },
         error:(reason:any)=>{
-          this.toaster.warning(reason.error)
+          alert(reason.error)
         }
        })
     }else{
-      this.toaster.info("Invalid Inputs...Please fill the fprm with Valid Dta")
+      alert("Invalid Inputs...Please fill the fprm with Valid Dta")
     }
   }
 

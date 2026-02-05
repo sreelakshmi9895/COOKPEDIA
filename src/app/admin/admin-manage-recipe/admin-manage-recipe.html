@@ -1,0 +1,104 @@
+<div class="container-fluid">
+   <div class="row">
+<div class="col-lg-2">
+    <app-admin-sidebar></app-admin-sidebar>
+</div>
+<div class="col">
+<h1 class="text-center my-3">
+@if(recipeId){
+    Edit
+}@else{
+    Add
+}
+Add Recipe details</h1>
+<div class="container my-5 boredr rounded shadow p-5 text-center w-75">
+<div class="row">
+<div class="col-lg-6">
+<div class="mb-2">
+<input [(ngModel)]="recipeDetails().name" type="text" placeholder="Recipe Name" class="form-control">
+</div>
+ <div class="mb-2">
+<input [(ngModel)]="recipeDetails().prepTimeMinutes" type="text" placeholder="Recipe Preparation Time in Minutes" class="form-control">
+</div>
+  <div class="mb-2">
+<input [(ngModel)]="recipeDetails().image" type="text" placeholder="Recipe image URL" class="form-control">
+</div>
+<div class="mb-2">
+<input [(ngModel)]="recipeDetails().cuisine" type="text" placeholder="Recipe Cuisine Type (eg:Asian,Italian,Indian etc..)" class="form-control">
+</div>
+<div class="mb-2">
+    <div class="d-flex align-items-center mb-2">
+<textarea #ingredientInput placeholder="Add Recipe Ingredients" class="form-control"></textarea>
+<button (click)="addIngredients(ingredientInput)" class="btn fs-4 ms-2 fw-bolder">+</button>
+    </div>
+<!-- display ingredients duplicate-->
+ @for (item of ingredientArray; track $index) {
+<div class="d-flex align-items-center mb-2">
+ <input [value]="item" type="text" class="form-control" placeholder="Recipe ingredient" readonly>
+ <button (click)="removeIngredient(item)" class="btn text-danger"><i class="fa-solid fa-trash"></i></button>
+ </div>
+ }
+ 
+</div>
+</div>
+<div class="col-lg-6">
+    <div class="mb-2">
+<input [(ngModel)]="recipeDetails().servings" type="text" placeholder="Recipe Servings (eg:4)" class="form-control">
+</div>
+ <div class="mb-2">
+<input [(ngModel)]="recipeDetails().cookTimeMinutes" type="text" placeholder="Recipecook Time in Minutes" class="form-control">
+</div>
+  <div class="mb-2">
+<input [(ngModel)]="recipeDetails().caloriesPerServing" type="text" placeholder="Recipe calories Per Serving(eg:350)" class="form-control">
+</div>
+<div class="mb-3">
+    <select [(ngModel)]="recipeDetails().difficulty" name="mode" id="mode" class="form-control">
+        <option hidden disabled selected >Choose Mode of Cooking</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select>
+</div>
+<div class="mb-2">
+    <div class="d-flex align-items-center mb-2">
+<textarea #instructionInput placeholder="Add Recipe Instructions" class="form-control"></textarea>
+<button (click)="addInstruction(instructionInput)" class="btn fs-4 ms-2 fw-bolder">+</button>
+    </div>
+<!-- display ingredients duplicate-->
+ @for (item of instructionArray; track $index) {
+<div class="d-flex align-items-center mb-2">
+ <input [value]="item" type="text" class="form-control" placeholder="Recipe ingredient">
+ <button (click)="removeInstruction(item)" class="btn text-danger"><i class="fa-solid fa-trash"></i></button>
+ </div>
+ }
+ 
+</div>
+</div>
+</div>
+<div class="mb-3">
+<div class="d-flex my-1">
+<!-- meal type -->
+<input #mealInput  type="text" placeholder="Add Meal Type of the Recipe(eg:Breakfast,Lunch,Dinner,Appetizer etc...)" class="form-control">
+<button (click)="addMeal(mealInput)" class="btn fw-bolder fs-3 me-3">+</button>
+</div>
+
+ <div class="d-flex flex-wrap my-1">
+<!-- duplicate meal type -->
+ @for (item of mealTypeArray; track $index) {
+ <div class="border rounded p-1 m-1">
+<span class="fw-bolder">{{item}}</span>
+<button (click)="removeMeal(item)" class="btn"><i class="fa-solid fa-x"></i></button>
+ </div>
+ }
+
+ </div>
+</div>
+@if (recipeId) {
+    <button (click)="editRecipe()" class="btn btn-warning text-light">Update Recipe</button>
+}@else {
+    <button (click)="addRecipe()" class="btn btn-warning text-light">Add Recipe</button>
+}
+</div>
+</div>
+   </div>
+</div>
