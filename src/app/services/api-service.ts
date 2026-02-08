@@ -7,7 +7,7 @@ import { RecipeModel } from '../admin/model/recipeModel';
 })
 export class ApiService {
 
-  server_url = "http://localhost:3000"
+  server_url = "https://cookpedia-server-cpel.onrender.com"
   http = inject(HttpClient)
 
   // api function :
