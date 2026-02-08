@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+
+import { HighchartsChartComponent } from 'highcharts-angular';
 
 import { AdminRoutingModule } from './admin-routing-module';
 import { AdminDashboard } from './admin-dashboard/admin-dashboard';
@@ -27,7 +33,15 @@ import { SearchPipe } from '../pipes/search-pipe';
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    SearchPipe
+    SearchPipe,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatCardModule,
+    HighchartsChartComponent
+  ],
+  providers:[
+    provideNativeDateAdapter(),
+   
   ]
 })
 export class AdminModule { }

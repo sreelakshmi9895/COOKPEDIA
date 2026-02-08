@@ -37,6 +37,7 @@ export class Login {
           sessionStorage.setItem("token",res.token)
            sessionStorage.setItem("user",JSON.stringify(res.user))
           alert("User login successful...")
+          this.api.getChartData()
           this.loginForm.reset()
           if(res.userrole=="user"){
             this.router.navigateByUrl('/')

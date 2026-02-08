@@ -1,0 +1,36 @@
+.notfound-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #b3bc6e, #e8ffe8);
+  text-align: center;
+}
+
+.card-404 {
+  background: rgb(129, 96, 96);
+  padding: 50px;
+  border-radius: 20px;
+  max-width: 500px;
+}
+
+.code {
+  font-size: 120px;
+  font-weight: 800;
+  color: #28a745;
+}
+
+.food-icon {
+  font-size: 60px;
+  color: orange;
+  margin: 15px 0;
+}
+
+p {
+  color: #555;
+}
+
+button {
+  border-radius: 10px;
+  padding: 10px 20px;
+}
