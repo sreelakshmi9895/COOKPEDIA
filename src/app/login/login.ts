@@ -39,7 +39,7 @@ export class Login {
           alert("User login successful...")
           this.api.getChartData()
           this.loginForm.reset()
-          if(res.userrole=="user"){
+          if(res.user.role === "user"){
             this.router.navigateByUrl('/')
           }else{
              this.router.navigateByUrl('/admin')
